@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintou Novidades | Moda & Calçados</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Arquivo CSS Externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Cabeçalho -->
+    <header class="navbar">
+        <div class="logo">
+            <h2>Pintou <span>Novidades</span></h2>
+        </div>
+        <nav class="nav-links">
+            <a href="#produtos">Produtos</a>
+            <a href="#endereco">Nossa Loja</a>
+            <a href="#faq">Dúvidas</a>
+        </nav>
+        <div class="cart-icon-wrapper" onclick="toggleCart()">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>As Melhores Tendências Chegaram!</h1>
+            <p>Roupas e calçados exclusivos para você renovar seu estilo.</p>
+            <a href="#produtos" class="btn-hero">Ver Coleção</a>
+        </div>
+    </section>
+
+    <!-- Filtros de Categoria -->
+    <section class="categories-section">
+        <button class="cat-btn active" onclick="filterProducts('todos', this)">Todos</button>
+        <button class="cat-btn" onclick="filterProducts('feminino', this)">Feminino</button>
+        <button class="cat-btn" onclick="filterProducts('masculino', this)">Masculino</button>
+        <button class="cat-btn" onclick="filterProducts('calcados', this)">Calçados</button>
+    </section>
+
+    <!-- Vitrine de Produtos -->
+    <main class="container" id="produtos">
+        <h2 class="section-title">Nossos Destaques</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Produtos renderizados via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Seção Endereço Físico Destacado -->
+    <section class="address-section" id="endereco">
+        <div class="address-container">
+            <div class="address-info">
+                <h3><i class="fa-solid fa-location-dot" style="color: #e74c3c;"></i> Nossa Loja Principal</h3>
+                <p>Venha nos visitar e conferir de perto todas as nossas coleções exclusivas.</p>
+            </div>
+            <div class="address-badge">
+                <i class="fa-solid fa-store"></i>
+                <span>Avenida 28 de abril, 328, Ipatinga - MG | CEP: 35160-004</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Avenida+28+de+abril,+328,+Ipatinga+-+MG,+35160-004" target="_blank" rel="noopener noreferrer" class="btn-maps">
+                    <i class="fa-solid fa-map-location-dot"></i> Ver no Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drawer da Sacola / Checkout -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Sua Sacola</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        
+        <div class="cart-body" id="cartBody">
+            <!-- Itens inseridos via JS -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+
+            <!-- Guichê de Finalização -->
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label for="custName">Seu Nome:</label>
+                    <input type="text" id="custName" placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryType">Forma de Recebimento:</label>
+                    <select id="deliveryType" onchange="toggleDeliveryType(this.value)">
+                        <option value="retirada">Retirar na Loja (Ipatinga)</option>
+                        <option value="entrega">Receber em Casa</option>
+                    </select>
+                </div>
+
+                <!-- Campos de Endereço Dinâmicos -->
+                <div class="delivery-address" id="addressFields">
+                    <div class="form-group">
+                        <input type="text" id="custStreet" placeholder="Rua / Avenida">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="custNumber" placeholder="Número / Complemento">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="custCity" placeholder="Bairro e Cidade">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="custPayment">Forma de Pagamento:</label>
+                    <select id="custPayment">
+                        <option value="PIX (Seguro)">PIX</option>
+                        <option value="Cartão de Crédito">Cartão de Crédito</option>
+                        <option value="Cartão de Débito">Cartão de Débito</option>
+                    </select>
+                </div>
+
+                <button class="btn-checkout" onclick="checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5531999999999?text=Olá,%20gostaria%20de%20tirar%20uma%20dúvida!" target="_blank" class="btn-whatsapp-float" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Pintou Novidades. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Arquivo JS Externo -->
+    <script src="script.js"></script>
+</body>
+</html>
